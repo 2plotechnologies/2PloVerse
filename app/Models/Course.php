@@ -11,7 +11,7 @@ class Course extends Model
 
     protected $table = 'courses';
 
-    protected $fillable = ['name', 'description', 'image', 'user_id', 'category_id'];
+    protected $fillable = ['title', 'description', 'image', 'user_id', 'category_id'];
 
     public $timestamps = false;
 
