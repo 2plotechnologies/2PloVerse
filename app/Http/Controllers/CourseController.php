@@ -56,7 +56,7 @@ class CourseController extends Controller
     // Mostrar el formulario para editar un curso existente
     public function edit(Course $course)
     {
-        $categories = Category::all();
+        $categories = Categories::all();
         return view('courses.edit', compact('course', 'categories'));
     }
 

@@ -1,26 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Edit Blog Post</h1>
-    <form action="{{ route('blogposts.update', $blogPost) }}" method="POST">
-        @csrf
-        @method('PUT')
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" value="{{ $blogPost->title }}" required>
-        </div>
-        <div>
-            <label for="content">Content</label>
-            <textarea id="content" name="content" required>{{ $blogPost->content }}</textarea>
-        </div>
-        <div>
-            <label for="blog_id">Blog</label>
-            <select id="blog_id" name="blog_id" required>
-                @foreach($blogs as $blog)
-                    <option value="{{ $blog->id }}" {{ $blog->id == $blogPost->blog_id ? 'selected' : '' }}>{{ $blog->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit">Update</button>
-    </form>
+    <div class="container mt-5">
+        <h1>Edit Blog Post</h1>
+        <form action="{{ route('blogposts.update', $post) }}" method="POST">
+            @csrf
+            @method('PUT') <!-- Usar PUT o PATCH para la actualización -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{ $blogPost->title }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required>{{ $blogPost->content }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Post</button>
+        </form>
+    </div>
 @endsection

@@ -16,10 +16,10 @@ class BlogPostController extends Controller
     }
 
     // Mostrar el formulario para crear un nuevo blog post
-    public function create()
+    public function create(Request $request)
     {
-        $blogs = Blog::all();
-        return view('blogposts.create', compact('blogs'));
+        $blogId = $request->query('blog_id'); // Obtener el blog_id de la query string
+        return view('blogposts.create', compact('blogId'));
     }
 
     // Almacenar un nuevo blog post en la base de datos
@@ -28,39 +28,38 @@ class BlogPostController extends Controller
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'blog_id' => 'required|exists:blogs,id',
+            'blog_id' => 'required|exists:blog,id',
         ]);
 
         BlogPost::create($request->all());
 
-        return redirect()->route('blogposts.index')->with('success', 'Blog post created successfully.');
+        return redirect()->route('blogs.index')->with('success', 'Blog post created successfully.');
     }
 
     // Mostrar un blog post específico
-    public function show(BlogPost $blogPost)
+    public function show(BlogPost $post)
     {
-        return view('blogposts.show', compact('blogPost'));
+        return view('blogposts.show', compact('post'));
     }
 
     // Mostrar el formulario para editar un blog post existente
-    public function edit(BlogPost $blogPost)
+    public function edit(BlogPost $post)
     {
-        $blogs = Blog::all();
-        return view('blogposts.edit', compact('blogPost', 'blogs'));
+        return view('blogposts.edit', compact('post'));
     }
 
     // Actualizar un blog post existente en la base de datos
     public function update(Request $request, BlogPost $blogPost)
     {
+        dd($blogPost);
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
-            'blog_id' => 'required|exists:blogs,id',
         ]);
 
         $blogPost->update($request->all());
 
-        return redirect()->route('blogposts.index')->with('success', 'Blog post updated successfully.');
+        return redirect()->route('blogs.show', $blogPost->blog_id)->with('success', 'Blog post updated successfully.');
     }
 
     // Eliminar un blog post existente de la base de datos
@@ -68,6 +67,6 @@ class BlogPostController extends Controller
     {
         $blogPost->delete();
 
-        return redirect()->route('blogposts.index')->with('success', 'Blog post deleted successfully.');
+        return redirect()->route('blogs.show', $blogPost->blog_id)->with('success', 'Blog post updated successfully.');
     }
 }

@@ -12,7 +12,8 @@ class HistoryController extends Controller
     // Mostrar todos los cursos
     public function index()
     {
-        $histories = History::all();
+        $userId = Auth::id(); // Obtener el ID del usuario autenticado
+        $histories = History::where('user_id', $userId)->get();
         return view('histories.index', compact('histories'));
     }
 
@@ -49,13 +50,15 @@ class HistoryController extends Controller
     // Mostrar un curso específico
     public function show(History $history)
     {
-        return view('histories.show', compact('history'));
+        $chapters = $history->chapters; // Asumiendo que la relación está definida en el modelo History
+        return view('histories.show', compact('history', 'chapters'));
     }
+
 
     // Mostrar el formulario para editar un curso existente
     public function edit(History $history)
     {
-        $categories = Category::all();
+        $categories = Categories::all();
         return view('histories.edit', compact('history', 'categories'));
     }
 

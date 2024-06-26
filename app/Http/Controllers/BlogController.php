@@ -12,7 +12,8 @@ class BlogController extends Controller
     // Listar todos los blogs
     public function index()
     {
-        $blogs = Blog::all();
+        $userId = Auth::id(); // Obtener el ID del usuario autenticado
+        $blogs = Blog::where('user_id', $userId)->get();
         return view('blogs.index', compact('blogs'));
     }
 
@@ -50,12 +51,14 @@ class BlogController extends Controller
     // Mostrar un blog específico
     public function show(Blog $blog)
     {
-        return view('blogs.show', compact('blog'));
+        $posts = $blog->posts; // Relación está definida en el modelo Blog
+        return view('blogs.show', compact('blog', 'posts'));
     }
 
     // Mostrar el formulario para editar un blog existente
     public function edit(Blog $blog)
     {
+        dd($blog);
         $categories = Categories::all();
         return view('blogs.edit', compact('blog', 'categories'));
     }
