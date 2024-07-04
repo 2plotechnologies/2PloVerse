@@ -7,6 +7,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MagazineController;
 use App\Http\Controllers\ChapterController;
+use App\Http\Controllers\MagazinePostController;
 
 
 Route::get('/', function () {
@@ -29,4 +30,4 @@ Route::resource('magazines', MagazineController::class)->middleware('auth');
 
 Route::resource('chapters', ChapterController::class)->middleware('auth');
 
-
+Route::resource('magazineposts', MagazinePostController::class);

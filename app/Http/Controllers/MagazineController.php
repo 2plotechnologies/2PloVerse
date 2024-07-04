@@ -50,7 +50,8 @@ class MagazineController extends Controller
     // Mostrar un Revista específico
     public function show(Magazine $magazine)
     {
-        return view('magazines.show', compact('magazine'));
+        $magazinePosts  = $magazine->posts; // Carga los magazinePosts asociados
+        return view('magazines.show', compact('magazine', 'magazinePosts'));
     }
 
     // Mostrar el formulario para editar un Revista existente

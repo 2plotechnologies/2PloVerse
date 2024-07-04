@@ -17,13 +17,37 @@
         <div class="mb-3">
             <p><strong>Category ID:</strong> {{ $magazine->category_id }}</p>
         </div>
-        <div class="d-flex">
+        <div class="d-flex mb-4">
             <a href="{{ route('magazines.edit', $magazine) }}" class="btn btn-outline-secondary me-2">Edit</a>
             <form action="{{ route('magazines.destroy', $magazine) }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger">Delete</button>
             </form>
+        </div>
+        <hr>
+        <div class="mb-4">
+            <h2>Magazine Posts</h2>
+            <a href="{{ route('magazineposts.create', ['magazine_id' => $magazine->id]) }}" class="btn btn-primary mb-3">Create New Magazine Post</a>
+            @if($magazinePosts->isEmpty())
+                <p>No magazine posts available.</p>
+            @else
+                <ul class="list-group">
+                    @foreach($magazinePosts as $magazinePost)
+                        <li class="list-group-item">
+                            <h5>{{ $magazinePost->title }}</h5>
+                            <p>{{ Str::limit($magazinePost->content, 150) }}</p>
+                            <a href="{{ route('magazineposts.show', $magazinePost->id) }}" class="btn btn-outline-info btn-sm">View</a>
+                            <a href="{{ route('magazineposts.edit', $magazinePost->id) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+                            <form action="{{ route('magazineposts.destroy', $magazinePost->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                            </form>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 @endsection

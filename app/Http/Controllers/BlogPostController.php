@@ -37,21 +37,25 @@ class BlogPostController extends Controller
     }
 
     // Mostrar un blog post específico
-    public function show(BlogPost $post)
+    public function show($id)
     {
+        $post = BlogPost::findOrFail($id);
         return view('blogposts.show', compact('post'));
     }
 
     // Mostrar el formulario para editar un blog post existente
-    public function edit(BlogPost $post)
+    public function edit($id)
     {
+        $post = BlogPost::findOrFail($id);
+
         return view('blogposts.edit', compact('post'));
     }
 
     // Actualizar un blog post existente en la base de datos
-    public function update(Request $request, BlogPost $blogPost)
+    public function update(Request $request, $id)
     {
-        dd($blogPost);
+        $blogPost = BlogPost::findOrFail($id);
+
         $request->validate([
             'title' => 'required|max:255',
             'content' => 'required',
@@ -63,8 +67,10 @@ class BlogPostController extends Controller
     }
 
     // Eliminar un blog post existente de la base de datos
-    public function destroy(BlogPost $blogPost)
+    public function destroy($id)
     {
+        $blogPost = BlogPost::findOrFail($id);
+
         $blogPost->delete();
 
         return redirect()->route('blogs.show', $blogPost->blog_id)->with('success', 'Blog post updated successfully.');
