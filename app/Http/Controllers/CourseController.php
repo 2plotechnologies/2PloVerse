@@ -50,7 +50,8 @@ class CourseController extends Controller
     // Mostrar un curso específico
     public function show(Course $course)
     {
-        return view('courses.show', compact('course'));
+        $units = $course->units;
+        return view('courses.show', compact('course', 'units'));
     }
 
     // Mostrar el formulario para editar un curso existente

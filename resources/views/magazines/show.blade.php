@@ -12,10 +12,10 @@
             </div>
         @endif
         <div class="mb-3">
-            <p><strong>User ID:</strong> {{ $magazine->user_id }}</p>
+            <p><strong>User:</strong> {{ $magazine->user->name }}</p>
         </div>
         <div class="mb-3">
-            <p><strong>Category ID:</strong> {{ $magazine->category_id }}</p>
+            <p><strong>Category:</strong> {{ $magazine->category->name }}</p>
         </div>
         <div class="d-flex mb-4">
             <a href="{{ route('magazines.edit', $magazine) }}" class="btn btn-outline-secondary me-2">Edit</a>

@@ -34,8 +34,8 @@ class ChapterController extends Controller
 
     public function show(Chapter $chapter)
     {
-        var_dump($chapter);
-        //return view('chapters.show', compact('chapter'));
+        //var_dump($chapter);
+        return view('chapters.show', compact('chapter'));
     }
 
     public function edit(Chapter $chapter)
