@@ -10,6 +10,8 @@ use App\Http\Controllers\ChapterController;
 use App\Http\Controllers\MagazinePostController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\DashboardController;
+
 
 
 Route::get('/', function () {
@@ -37,3 +39,6 @@ Route::resource('magazineposts', MagazinePostController::class)->middleware('aut
 Route::resource('units', UnitController::class)->middleware('auth');
 
 Route::resource('lessons', LessonController::class)->middleware('auth');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index')->middleware('auth');
+
