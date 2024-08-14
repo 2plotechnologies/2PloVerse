@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Course;
+use App\Models\History;
+use App\Models\Blog;
+use App\Models\Magazine;
 
 class HomeController extends Controller
 {
@@ -23,6 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $courses = Course::all();
+        $histories = History::all();
+        $blogs = Blog::all();
+        $magazines = Magazine::all();
+
+        return view('home', compact('courses', 'histories', 'blogs', 'magazines'));
     }
 }
