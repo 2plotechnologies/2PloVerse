@@ -38,6 +38,11 @@ class MagazinePostController extends Controller
         return view('magazineposts.show', compact('magazinePost'));
     }
 
+    public function showUser(MagazinePost $magazinePost)
+    {
+        return view('magazineposts.showUser', compact('magazinePost'));
+    }
+
     public function edit($id)
     {
         $magazinePost = MagazinePost::findOrFail($id);

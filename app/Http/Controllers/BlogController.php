@@ -55,6 +55,12 @@ class BlogController extends Controller
         return view('blogs.show', compact('blog', 'posts'));
     }
 
+    public function showUser(Blog $blog)
+    {
+        $posts = $blog->posts;
+        return view('blogs.showUser', compact('blog','posts'));
+    }
+
     // Mostrar el formulario para editar un blog existente
     public function edit(Blog $blog)
     {

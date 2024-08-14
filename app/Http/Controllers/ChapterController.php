@@ -38,6 +38,12 @@ class ChapterController extends Controller
         return view('chapters.show', compact('chapter'));
     }
 
+    public function showUser(Chapter $chapter)
+    {
+        return view('chapters.showUser', compact('chapter'));
+    }
+
+
     public function edit(Chapter $chapter)
     {
         return view('chapters.edit', compact('chapter'));

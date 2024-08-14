@@ -38,6 +38,13 @@ class LessonController extends Controller
         return view('lessons.show', compact('lesson'));
     }
 
+    public function showUser($id)
+    {
+        $lesson = Lesson::findOrFail($id);
+        return view('lessons.showUser', compact('lesson'));
+    }
+
+
     public function edit($id)
     {
         $lesson = Lesson::findOrFail($id);

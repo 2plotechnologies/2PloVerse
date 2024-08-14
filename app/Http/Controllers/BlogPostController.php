@@ -43,6 +43,12 @@ class BlogPostController extends Controller
         return view('blogposts.show', compact('post'));
     }
 
+    public function showUser(BlogPost $blogPost)
+    {
+        return view('blogposts.showUser', compact('blogPost'));
+    }
+
+
     // Mostrar el formulario para editar un blog post existente
     public function edit($id)
     {

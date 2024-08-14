@@ -33,7 +33,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $course->name }}</h5>
                                             <p class="card-text">{{ Str::limit($course->description, 100) }}</p>
-                                            <a href="{{ route('courses.show', $course) }}" class="btn btn-primary">View</a>
+                                            <a href="{{ route('courses.showUser', $course) }}" class="btn btn-primary">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                 <div class="card-header">{{ __('Histories') }}</div>
                 <div class="card-body">
                     @if($histories->isEmpty())
-                        <p>No histories available.</p>
+                        <p>No stories available.</p>
                     @else
                         <div class="row">
                             @foreach($histories as $history)
@@ -58,7 +58,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $history->name }}</h5>
                                             <p class="card-text">{{ Str::limit($history->description, 100) }}</p>
-                                            <a href="{{ route('histories.show', $history) }}" class="btn btn-primary">View</a>
+                                            <a href="{{ route('histories.showUser', $history) }}" class="btn btn-primary">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $blog->name }}</h5>
                                             <p class="card-text">{{ Str::limit($blog->description, 100) }}</p>
-                                            <a href="{{ route('blogs.show', $blog) }}" class="btn btn-primary">View</a>
+                                            <a href="{{ route('blogs.showUser', $blog) }}" class="btn btn-primary">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $magazine->name }}</h5>
                                             <p class="card-text">{{ Str::limit($magazine->description, 100) }}</p>
-                                            <a href="{{ route('magazines.show', $magazine) }}" class="btn btn-primary">View</a>
+                                            <a href="{{ route('magazines.showUser', $magazine) }}" class="btn btn-primary">View</a>
                                         </div>
                                     </div>
                                 </div>

@@ -54,6 +54,11 @@ class HistoryController extends Controller
         return view('histories.show', compact('history', 'chapters'));
     }
 
+    public function showUser(History $history)
+    {
+        $chapters = $history->chapters;
+        return view('histories.showUser', compact('history', 'chapters'));
+    }
 
     // Mostrar el formulario para editar un curso existente
     public function edit(History $history)

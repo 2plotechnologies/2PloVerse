@@ -54,6 +54,13 @@ class CourseController extends Controller
         return view('courses.show', compact('course', 'units'));
     }
 
+    public function showUser($id)
+    {
+        $course = Course::with('units.lessons')->findOrFail($id);
+        return view('courses.showUser', compact('course'));
+    }
+
+
     // Mostrar el formulario para editar un curso existente
     public function edit(Course $course)
     {
